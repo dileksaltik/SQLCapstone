@@ -3,7 +3,7 @@ CREATE TABLE Customer (
     CustID INT PRIMARY KEY,
     CustomerName VARCHAR(255),
     CustAddress VARCHAR(255),
-    CustPhNum INT
+    CustPhNum VARCHAR(13)
 );
 
 -- Create OrderHeader Table
@@ -25,8 +25,8 @@ CREATE TABLE InventoryStock (
     ItemLot INT PRIMARY KEY, 
     DeviceID INT,
     StockQuantity INT,
-    ItemExDate DATE,
-	FOREIGN KEY (DeviceID) REFERENCES Devices(DeviceID)
+    ItemExpDate DATE,
+    FOREIGN KEY (DeviceID) REFERENCES Devices(DeviceID)
 );
 -- Create OrderDetail Table
 CREATE TABLE OrderDetail ( 
@@ -35,7 +35,7 @@ CREATE TABLE OrderDetail (
     ItemLot INT,
     QtySold INT,
     SalesPrice DECIMAL(10, 2),
-	PRIMARY KEY (SaleID,LineItem),
+    PRIMARY KEY (SaleID,LineItem),
     FOREIGN KEY (SaleID) REFERENCES OrderHeader(SaleID),
     FOREIGN KEY (ItemLot) REFERENCES InventoryStock(ItemLot)
 );
